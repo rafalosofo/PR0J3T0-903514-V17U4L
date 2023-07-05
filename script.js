@@ -1,36 +1,41 @@
-var substantivos = ["flor", "amor", "mar", "lua", "poesia", "coração", "sol"];
-var adjetivos = ["belo", "brilhante", "encantador", "doce", "radiante", "sereno", "encantado"];
-var verbos = ["correr", "dançar", "cantar", "sonhar", "voar", "sorrir", "brilhar"];
+let phrases = [];
+let currentPhrase = "";
 
-var frase = "";
-var contadorPalavras = 0;
+function generatePhrase() {
+  let randomWord = words[Math.floor(Math.random() * words.length)];
+  currentPhrase += randomWord + " ";
 
-function gerarPalavra() {
-  if (contadorPalavras === 0) {
-    frase = getRandomWord(adjetivos);
-  } else if (contadorPalavras === 1) {
-    frase += " " + getRandomWord(substantivos);
-  } else if (contadorPalavras === 2) {
-    frase += " " + getRandomWord(adjetivos);
-  } else if (contadorPalavras === 3) {
-    frase += " " + getRandomWord(verbos);
-  } else if (contadorPalavras === 4) {
-    frase += " " + getRandomWord(substantivos);
-  } else {
-    frase += " " + getRandomWord(substantivos) + "<br>";
+  if (currentPhrase.trim().split(" ").length === 5 || currentPhrase.trim().split(" ").length === 6) {
+    phrases.push(currentPhrase);
+    currentPhrase = "";
+    displayPhrases();
   }
-  
-  document.getElementById("prompt").innerHTML = frase;
-  
-  contadorPalavras++;
-  
-  if (contadorPalavras === 6) {
-    contadorPalavras = 0;
-    frase = "";
-  }
+
+  displayCurrentPhrase();
 }
 
-function getRandomWord(wordArray) {
-  var randomIndex = Math.floor(Math.random() * wordArray.length);
-  return wordArray[randomIndex];
+function displayCurrentPhrase() {
+  let currentPhraseElement = document.getElementById("current-phrase");
+  currentPhraseElement.textContent = currentPhrase;
 }
+
+function displayPhrases() {
+  let phrasesElement = document.getElementById("phrases");
+  phrasesElement.innerHTML = "";
+
+  phrases.forEach((phrase) => {
+    let phraseElement = document.createElement("p");
+    phraseElement.textContent = phrase;
+    phrasesElement.appendChild(phraseElement);
+  });
+}
+
+function clearPhrases() {
+  phrases = [];
+  currentPhrase = "";
+  displayCurrentPhrase();
+  displayPhrases();
+}
+
+document.getElementById("generate-button").addEventListener("click", generatePhrase);
+document.getElementById("clear-button").addEventListener("click", clearPhrases);
