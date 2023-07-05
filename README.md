@@ -1,2 +1,3 @@
 # poesiavirtual1.2
-Retirei do meu servidor para deixar salvo por aqui
+Atualização do projeto PoesiaVirtual
+Add + palavras ao BD
