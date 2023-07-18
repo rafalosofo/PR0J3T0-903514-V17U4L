@@ -7,45 +7,46 @@
   <style>
     /* Adicione estilos personalizados conforme necessário */
     body {
-      font-family: "Courier New", monospace;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
+      font-family: "Courier New", monospace;
+    }
+
+    #prompt-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
     }
 
     #prompt {
-      text-align: center;
       font-size: 24px;
-      margin: 20px 0;
+      margin-bottom: 20px;
     }
 
-    #generate-btn {
-      display: block;
-      margin: 0 auto;
-      animation: pulse 1s infinite;
+    #generate-button {
+      margin-bottom: 20px;
     }
 
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
-      100% {
-        transform: scale(1);
-      }
+    #visitor-counter {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
     }
   </style>
 </head>
 <body>
   <h1>Poesia Virtual - Jogo de Roleta de Palavras</h1>
   
-  <div id="prompt"></div>
-  
-  <button id="generate-btn" onclick="gerarPalavra()">Gerar palavra</button>
-  
+  <div id="prompt-container">
+    <button id="generate-button" onclick="generatePhrase()">Gerar palavra</button>
+    <div id="prompt"></div>
+  </div>
+
+  <div id="visitor-counter">Visitas: <span id="counter">666</span></div>
+
   <script src="script.js"></script>
 </body>
 </html>
